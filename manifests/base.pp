@@ -2,7 +2,7 @@ exec {'apt-get update':
   command => "/usr/bin/apt-get update"
 }
 
-apt-package {["octave3.2","git"]: }
+apt-package {["octave","git"]: }
 apt-package {["python-dev", "python-setuptools", "ipython-notebook"]: }
 apt-package {"python-pip": require => Package["python-dev"]}
 apt-package {["python-numpy", "python-scipy", "python-matplotlib"]: }
