@@ -3,14 +3,33 @@ exec {'apt-get update':
 }
 
 apt-package {["octave","git"]: }
+#python dev environment and tooling
 apt-package {["python-dev", "python-setuptools", "ipython-notebook"]: }
+python-package { "virtualenv": }
 apt-package {"python-pip": require => Package["python-dev"]}
+#scientific packages
 apt-package {["python-numpy", "python-scipy", "python-matplotlib"]: }
 apt-package {"libjpeg62": }
+
+#pandas for data processing
+apt-package { "python-pandas": }
+
+#python natural language stuff
+python-package { ["nose", "nltk", "pycluster", "hcluster"]: } 
+python-package { ["pymorph", "mahotas"]: }
+#simhashing
+python-package { "python-hashes": }
+#for graph processing
+python-package { "networkx": }
+
+python-package { "csvkit": }
+
+#screen scrapping library
+python-package { "beautifulsoup4": }
+
+#r setup
 apt-package {["r-base", "wget"]: }
 class { "rstudio": }
-
-python-package {["nose", "nltk", "pycluster", "hcluster", "virtualenv", "python-hashes", "beautifulsoup4","pymorph", "mahotas"]: }
 
 define apt-package($package = $title) {
   package {$package:
