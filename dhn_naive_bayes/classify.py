@@ -79,15 +79,20 @@ class Trainer(object):
         self.model.increment_cat(category)
 
 def get_features(document):
-    document = re.sub('[%s]' % re.escape(string.punctuation), '', document) # removes punctuation
-    document = document.lower() # make everything lowercase
-    all_words = [w for w in word_tokenize(document) if len(w) > 3 and len(w) < 16]
-    p = PorterStemmer()
-    all_words = [p.stem(w) for w in all_words]
+    all_words = word_tokenize(document)
     all_words_freq = FreqDist(all_words)
-    
-    # print sorted(all_words_freq.items(), key=lambda(w,c):(-c, w))
     return all_words_freq
+
+#def get_features(document):
+#    document = re.sub('[%s]' % re.escape(string.punctuation), '', document) # removes punctuation
+#    document = document.lower() # make everything lowercase
+#    all_words = [w for w in word_tokenize(document) if len(w) > 3 and len(w) < 16]
+#    p = PorterStemmer()
+#    all_words = [p.stem(w) for w in all_words]
+#    all_words_freq = FreqDist(all_words)
+#    
+#    # print sorted(all_words_freq.items(), key=lambda(w,c):(-c, w))
+#    return all_words_freq
         
 
 class Data(object):
